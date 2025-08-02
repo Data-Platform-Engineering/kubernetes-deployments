@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Data-Platform-Engineering/kubernetes-deployments.git
+    targetRevision: HEAD
+    path: application/charts/prometheus
+    helm:
+      releaseName: prometheus
+      parameters:
+        - name: "environment"
+          value: Production
+      valueFiles: 
+      - application/charts/prometheus/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

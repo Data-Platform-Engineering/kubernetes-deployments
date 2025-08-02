@@ -102,9 +102,10 @@ configs:
   # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
   secret:
     # -- Create the argocd-secret
-    createSecret: true
+    createSecret: false
     # -- Labels to be added to argocd-secret
-    labels: {}
+    labels:
+      app.kubernetes.io/name: argocd-secret
     # -- Annotations to be added to argocd-secret
     annotations: {}
 
@@ -300,7 +301,7 @@ server:
     # -- Server service labels
     labels: {}
     # -- Server service type
-    type: ClusterIP
+    type: NodePort
     # -- Server service http port for NodePort service type (only if `server.service.type` is set to "NodePort")
     nodePortHttp: 30080
     # -- Server service https port for NodePort service type (only if `server.service.type` is set to "NodePort")

@@ -21,4 +21,4 @@ jobs:
           value: ${{ github.sha }}            # Full commit SHA? confirm this
           commitChange: true
           branch: main
-          message: 'chore: update values.yaml with commit SHA'
+          message: 'chore: update values.yaml with commit SHA' # Make this more intuitive?

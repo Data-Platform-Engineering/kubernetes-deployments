@@ -10,11 +10,7 @@ variable "description" {
   
 }
 
-# variable "secrets_id" {
-#     description = "The ID of the secret in AWS Secrets Manager"
-#     type        = string
-  
-# }
+
 
 variable "secret_string" {
     description = "The secret string to store in AWS Secrets Manager"

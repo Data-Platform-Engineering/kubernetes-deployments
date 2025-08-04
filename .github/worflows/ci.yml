@@ -1,0 +1,24 @@
+name: yaml-update CI
+
+on:
+  push:
+    branches:
+      - main  # Only run on pushes to main, verify if there are other conditions
+
+jobs:
+  update-yaml:
+    name: Update values.yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update YAML with commit SHA
+        uses: fjogeleit/yaml-update-action@v0.14.0
+        with:
+          valueFile: 'argo-cd/values.yaml'
+          propertyPath: 'app.version'         # TODO: Adjust the property path as needed
+          value: ${{ github.sha }}            # Full commit SHA? confirm this
+          commitChange: true
+          branch: main
+          message: 'chore: update values.yaml with commit SHA' # Make this more intuitive?

@@ -35,7 +35,7 @@ locals {
 
 module "argo_server_secretkey" {
   source       = "./modules/secrets_manager"
-  secrets_name = "/argocd/serversecretkey"
+  secrets_name = "argocd/serversecretkey"
   description  = "ArgoCD server.secretkey used to sign session tokens"
 
   secret_string = jsonencode({
@@ -43,9 +43,8 @@ module "argo_server_secretkey" {
   })
 }
 
-#https://developer.hashicorp.com/terraform/language/functions/bcrypt
 
-#my password = $2a$10$.epu6oodaGyd0RX7603bIuOIkXBLD6DFuGGxZyt4vv9Y4r0wQdc3y
+
 
 
 

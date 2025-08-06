@@ -412,7 +412,7 @@ applicationSet:
 
 
   podLabels: 
-    Team: Data Platform Team
+    Team: Data-Platform-Team
     Environment: Production
     Service: ArgoCD
 

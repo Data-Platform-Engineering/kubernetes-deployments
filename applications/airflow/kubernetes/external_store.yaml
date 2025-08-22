@@ -1,0 +1,28 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: "airflow-db-external-secret"
+spec:
+  refreshInterval: "1m"
+  secretStoreRef: 
+    name: airflow-db-secret-store
+    kind: SecretStore
+  target:
+    name: airflow-secret
+    creationPolicy: 'Owner'
+  data:
+  - secretKey: username
+    remoteRef:
+       key: /environment/team/service/rds/username
+  - secretKey: password
+    remoteRef:
+       key: /environment/team/service/rds/password
+  - secretKey: AWS_ACCESS_KEY_ID
+    remoteRef:
+       key: /environment/team/service/access_key
+  - secretKey: AWS_SECRET_ACCESS_KEY
+    remoteRef:
+       key: /environment/team/service/secret_key
+  - secretKey: AWS_DEFAULT_REGION
+    remoteRef:
+       key: /environment/team/service/region
